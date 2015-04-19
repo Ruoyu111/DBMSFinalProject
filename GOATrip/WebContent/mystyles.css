@@ -47,4 +47,7 @@ p.sign-up {
   top: 15px;
 }
 
+p.error {
+	color: red;
+}
 

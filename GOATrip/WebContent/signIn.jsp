@@ -25,6 +25,36 @@
 <body>
 
     <div class="container">
+    
+    <%
+    UserDAO dao = new UserDAO();
+ 	
+ 	String action = request.getParameter("action");
+ 	String username = request.getParameter("username");
+ 	String password = request.getParameter("password");
+ 	
+ 	if("signin".equals(action))
+ 	{
+ 		signinDAO signindao = new signinDAO();
+ 		boolean check = signindao.signinCheck(username, password);
+ 		
+ 		if(check == true)
+ 		{
+ 			%>
+ 				<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp">
+ 			<%
+ 		}
+ 		
+ 		else
+ 		{
+ 			%>
+ 				<p class="error">ERROR: username/password pair not found! <a href="signIn.jsp" class="button top-button signup-button">Click here</a> to re-enter your username and passowrd.</p>
+ 			<%
+ 		}
+ 	}
+ 	
+    %>
+    
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -37,7 +67,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="signin">Sign in</button>
         <p class="text-center sign-up"><a href="register.jsp" class="button top-button signup-button">Sign up</a> for a new account</p>
       </form>
 

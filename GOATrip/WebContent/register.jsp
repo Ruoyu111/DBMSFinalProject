@@ -29,14 +29,31 @@
 	 		int check = registerdao.registerCheck(username, email);
 	 		if(check == 1)
 	 		{
-	 			out.println("");
+	 			%>
+	 				<p class="double">User name already exist! Please try again.</p>
+	 			<% 
 	 		}
 	 		
-	 		User user = new User();
-	 		user.setUserName(username);
-	 		user.setPassWord(password);
-	 		user.setEmail(email); 
-	 		dao.createUser(user);
+	 		else if(check == 2)
+	 		{
+	 			%>
+ 				<p class="double">Email already exist! Please try again.</p>
+ 				<% 
+	 		}
+	 		
+	 		else
+	 		{
+	 			User user = new User();
+		 		user.setUserName(username);
+		 		user.setPassWord(password);
+		 		user.setEmail(email); 
+		 		dao.createUser(user);
+		 		
+		 %>
+ 				<p class="double2">Congratulations! Register success! Click<a href="signIn.jsp" class="button"> here</a> to login.</p>
+ 		<% 
+	 		}
+	 		
 	 	}
 	 	%>
 	 

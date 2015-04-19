@@ -34,3 +34,12 @@ p.sign-in {
 a {
 	color: #008000;
 }
+
+p.double {
+	color: red;
+}
+
+p.double2 {
+	font-size: 15px;
+	color: green;
+}
