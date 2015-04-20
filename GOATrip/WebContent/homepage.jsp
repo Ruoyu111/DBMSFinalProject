@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="tree.ico">
+<title>GoATrip home</title>
+<link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
-<body>
-	<h1>This is a home page!</h1>
+<body >
+	<p class = "title">GoATrip<p>
+	<div class = "container">
+		<form>
+			<table>
+				<tr>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="note"><a href="note.jsp" class="button">Note</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="travelplan"><a href="travelplan.jsp" class="button">Travel Plan</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="book"><a href="book.jsp" class="button">Book</a></button></td>
+				</tr>
+			</table>
+
+		</form>
+	</div>
 </body>
 </html>

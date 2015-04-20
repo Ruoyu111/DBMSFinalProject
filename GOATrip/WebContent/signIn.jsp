@@ -36,13 +36,15 @@
  	if("signin".equals(action))
  	{
  		signinDAO signindao = new signinDAO();
- 		boolean check = signindao.signinCheck(username, password);
+ 		int check = signindao.signinCheck(username, password);
  		
- 		if(check == true)
+ 		if(check == 1)
  		{
  			%>
  				<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp">
+ 				<p class="success">Login success!</p>
  			<%
+ 			
  		}
  		
  		else
@@ -51,17 +53,17 @@
  				<p class="error">ERROR: username/password pair not found! <a href="signIn.jsp" class="button top-button signup-button">Click here</a> to re-enter your username and passowrd.</p>
  			<%
  		}
- 	}
  	
+ 	}
     %>
     
 
-      <form class="form-signin">
+      <form action="signIn.jsp" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me

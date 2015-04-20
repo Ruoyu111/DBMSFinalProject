@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello GOATrip</h1>
-	<%
-		out.println("test");
-	%>
-	<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp">
+	<h1>This is travel plan page!</h1>
 </body>
 </html>

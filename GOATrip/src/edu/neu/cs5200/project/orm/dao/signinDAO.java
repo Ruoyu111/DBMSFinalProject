@@ -14,7 +14,7 @@ public class signinDAO {
 	EntityManager em = factory.createEntityManager();
 	
 	// check username and password
-	public boolean signinCheck(String username, String password)
+	public int signinCheck(String username, String password)
 	{
 		UserDAO dao = new UserDAO();
 		List<User> users = dao.findAllUsers();
@@ -24,23 +24,23 @@ public class signinDAO {
 			if(user.getUserName().equals(username) && user.getPassWord().equals(password))
 			{
 				System.out.println("succeed!");
-				return true;
+				return 1;
 			}
 			
 			else
 			{
 				System.out.println("failed!");
-				return false;
+				return 0;
 			}
 		}
-		return false;
+		return 0;
 		
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		signinDAO signindao = new signinDAO();
-//		signindao.signinCheck("ru", "123");
+		signinDAO signindao = new signinDAO();
+		System.out.println(signindao.signinCheck("ruoyu", "111"));
 	}
 
 }

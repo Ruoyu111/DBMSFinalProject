@@ -49,5 +49,13 @@ p.sign-up {
 
 p.error {
 	color: red;
+	position: relative;
+	left: 80px;
+}
+
+p.success {
+	color: green;
+	position: relative;
+	left: 80px;
 }
 
