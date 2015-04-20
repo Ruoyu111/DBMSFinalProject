@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import edu.neu.cs5200.project.orm.models.SigninRecord;
 import edu.neu.cs5200.project.orm.models.User;
 
 public class signinDAO {
@@ -23,6 +24,9 @@ public class signinDAO {
 		{
 			if(user.getUserName().equals(username) && user.getPassWord().equals(password))
 			{
+				SigninRecordDAO signinrecorddao = new SigninRecordDAO();
+				SigninRecord record = new SigninRecord(null, username, user.getId());
+				signinrecorddao.createRecord(record);
 				System.out.println("succeed!");
 				return 1;
 			}

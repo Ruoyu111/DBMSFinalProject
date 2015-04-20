@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
 <body >
-	<p class = "title">GoATrip<p>
+	<p class = "title"><a href = "homepage.jsp" class = "goatrip">GoATrip</a><p>
 	<div class = "container">
 		<form>
 			<table>
