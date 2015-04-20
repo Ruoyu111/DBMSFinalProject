@@ -26,21 +26,18 @@ public class signinDAO {
 				System.out.println("succeed!");
 				return 1;
 			}
-			
-			else
-			{
-				System.out.println("failed!");
-				return 0;
-			}
 		}
+		
+		System.out.println("failed!");
 		return 0;
 		
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		signinDAO signindao = new signinDAO();
-		System.out.println(signindao.signinCheck("ruoyu", "111"));
+//		signinDAO signindao = new signinDAO();
+//		System.out.println(signindao.signinCheck("Jinrong Gong", "123456"));
+		
 	}
 
 }

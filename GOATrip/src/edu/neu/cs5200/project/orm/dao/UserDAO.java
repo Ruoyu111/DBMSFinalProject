@@ -145,11 +145,11 @@ public class UserDAO {
 //		 System.out.println(user.getUserName());
 
 		// findAllUsers test
-		// List<User> users = dao.findAllUsers();
-		// for(User user : users)
-		// {
-		// System.out.println(user.getUserName());
-		// }
+//		 List<User> users = dao.findAllUsers();
+//		 for(User user : users)
+//		 {
+//		 System.out.println(user.getUserName());
+//		 }
 
 		// updateUser test
 		// User ruoyu = dao.findUserById(1);

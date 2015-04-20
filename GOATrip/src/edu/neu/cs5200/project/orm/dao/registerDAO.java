@@ -33,19 +33,16 @@ public class registerDAO {
 				System.out.println("The email already exit!");
 				return 2;
 			}
-			else
-			{
-				System.out.println("congritulations!");
-				return 3;
-			}
 		}
-		return 0;
+		
+		System.out.println("congritulations!");
+		return 3;
 		
 	}
 	
 	public static void main(String[] args)
 	{
-//		registerDAO dao = new registerDAO();
-//		dao.registerCheck("ruo", "chen.ruo@husky.neu.edu");
+		registerDAO dao = new registerDAO();
+		dao.registerCheck("xiaohua", "xiaohua@gmail.com");
 	}
 }
