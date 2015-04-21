@@ -10,10 +10,39 @@
 <link rel="stylesheet" type="text/css" href="noteStyle.css" media="screen" />
 </head>
 <body >
-	<p class = "title"><a href = "homepage.jsp" class = "goatrip">GoATrip</a><p><br/>
+	<% String idStr = request.getParameter("id"); %>
+	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p><br/>
 	<div class = "container">
-		<h1>My Notes</h1>
-		<form action="note.jsp">
+		<%
+			TravelPlanDAO travelplandao = new TravelPlanDAO();
+			UserDAO userdao = new UserDAO();
+			
+			
+			String action = request.getParameter("action");
+			String title = request.getParameter("title");
+			String destination = request.getParameter("destination");
+		
+			if("create".equals(action))
+			{
+				int idInt = Integer.parseInt(idStr);
+				TravelPlan travelplan = new TravelPlan(null, title, new Date(), destination);
+				userdao.addTravelPlan(idInt, travelplan);
+			}
+			else if("delete".equals(action))
+			{
+				String planIdStr = request.getParameter("planId");
+				int planIdInt = Integer.parseInt(planIdStr);
+				travelplandao.deleteTravelPlan(planIdInt);
+			}
+			
+			int idInt = Integer.parseInt(idStr);
+			User user = userdao.findUserById(idInt);
+			List<TravelPlan> travelPlans = user.getTravelPlans();
+		%>
+	
+		
+		<h1>My travel plans</h1>
+		<form action="travelplan.jsp">
 			<table class="table table-striped">
 			<tr>
 				<th>Title</th>
@@ -23,26 +52,23 @@
 			</tr>
 			<tr>
 				<td><input name="title" class="form-control"/></td>
-				<td><input name="date" class="form-control"/></td>
+				<td><input class="form-control" name="date" readonly/></td>
 				<td><input name="destination" class="form-control"/></td>
 				<td>
 					<button class="btn btn-primary" type="submit" name="action" value="create">Create</button>
 				</td>
 			</tr>
 		<%
-			for(Movie movie : movies)
+		
+			for(TravelPlan travelPlan : travelPlans)
 			{
 		%>		<tr>
+					<td><%= travelPlan.getTitle() %></td>
+					<td><%= travelPlan.getDate() %></td>
+					<td><%= travelPlan.getDestination() %></td>
 					<td>
-						<a href="movieDetails.jsp?id=<%= movie.getId() %>">
-						<%= movie.getTitle() %>
-						</a>
+					<a class="btn btn-danger" href="travelplan.jsp?action=delete&id=<%= idStr%>&planId=<%=travelPlan.getId() %>">Delete</a>
 					</td>
-				<td><%= movie.getPlot() %></td>
-				<td><%= movie.getPoster() %></td>
-				<td>
-					<a href="movies.jsp?action=delete&id=<%= movie.getId() %>" class="btn btn-danger">Delete</a>
-				</td>
 				</tr>
 		<%
 			}

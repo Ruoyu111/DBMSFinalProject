@@ -38,10 +38,10 @@
  		signinDAO signindao = new signinDAO();
  		int check = signindao.signinCheck(username, password);
  		
- 		if(check == 1)
+ 		if(check > 0)
  		{
  			%>
- 				<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp">
+ 				<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp?id=<%= String.valueOf(check)%>">
  				<p class="success">Login success!</p>
  			<%
  			

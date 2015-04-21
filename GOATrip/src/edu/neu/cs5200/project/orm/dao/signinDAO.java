@@ -28,12 +28,12 @@ public class signinDAO {
 				SigninRecord record = new SigninRecord(null, username, user.getId());
 				signinrecorddao.createRecord(record);
 				System.out.println("succeed!");
-				return 1;
+				return user.getId();
 			}
 		}
 		
 		System.out.println("failed!");
-		return 0;
+		return -1;
 		
 	}
 

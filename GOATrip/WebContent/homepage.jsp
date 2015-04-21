@@ -10,14 +10,17 @@
 <link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
 <body >
-	<p class = "title"><a href = "homepage.jsp" class = "goatrip">GoATrip</a><p>
+	<%
+	String idStr = request.getParameter("id");
+	%>
+	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p>
 	<div class = "container">
 		<form>
 			<table>
 				<tr>
-					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="note"><a href="note.jsp" class="button">Note</a></button></td>
-					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="travelplan"><a href="travelplan.jsp" class="button">Travel Plan</a></button></td>
-					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="book"><a href="book.jsp" class="button">Book</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="note"><a href="note.jsp?id=<%= idStr%>" class="button">Note</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="travelplan"><a href="travelplan.jsp?id=<%= idStr%>" class="button">Travel Plan</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="book"><a href="book.jsp?id=<%= idStr%>" class="button">Book</a></button></td>
 				</tr>
 			</table>
 
