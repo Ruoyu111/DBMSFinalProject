@@ -51,6 +51,8 @@ public class NoteDAO {
 	public void deleteNote(int id) {
 		em.getTransaction().begin();
 		Note note = em.find(Note.class, id);
+		User user = note.getUser();
+		user.getNotes().remove(note);
 		em.remove(note);
 		em.getTransaction().commit();
 	}

@@ -10,12 +10,34 @@
 <link rel="stylesheet" type="text/css" href="noteStyle.css" media="screen" />
 </head>
 <body >
-	<% String idStr = request.getParameter("id");%>
-	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p><br/>
+	<% String UserIdStr = request.getParameter("id");%>
+	<p class = "title"><a href = "homepage.jsp?id=<%= UserIdStr%>" class = "goatrip">GoATrip</a><p><br/>
 	<div class = "container">
+	<%
+			NoteDAO notedao = new NoteDAO();
+			UserDAO userdao = new UserDAO();
+			
+			
+			String action = request.getParameter("action");
+		
+
+			if("delete".equals(action))
+			{
+				String noteIdStr = request.getParameter("noteId");
+				int noteIdInt = Integer.parseInt(noteIdStr);
+				notedao.deleteNote(noteIdInt);
+			}
+			
+			int UserIdInt = Integer.parseInt(UserIdStr);
+			User user = userdao.findUserById(UserIdInt);
+			List<Note> notes = user.getNotes();
+		%>
+	
+	
 		<h1>My Notes</h1>
+		<a class="btn btn-primary" href="createNote.jsp?id=<%=UserIdStr%>">Create</a>
 		<form action="note.jsp">
-		<input type="hidden" name="id" value="<%= idStr%>" />
+		<input type="hidden" name="id" value="<%= UserIdStr%>" />
 			<table class="table table-striped">
 			<tr>
 				<th>Title</th>
@@ -34,7 +56,9 @@
 					<td><%= note.getCreateDate() %></td>
 					<td><%= note.getPostDate() %></td>
 					<td>
-					<a class="btn btn-danger" href="travelplan.jsp?action=delete&id=<%=idStr%>&planId=<%=travelPlan.getId()%>">Delete</a>
+					<a class="btn btn-info" href="viewNote.jsp?id=<%=UserIdStr%>&noteId=<%=note.getId() %>">View</a>
+					<a class="btn btn-warning" href="modifyNote.jsp?id=<%=UserIdStr%>&noteId=<%=note.getId()%>">Modify</a>
+					<a class="btn btn-danger" href="note.jsp?action=delete&id=<%=UserIdStr%>&noteId=<%=note.getId()%>">Delete</a>
 					</td>
 				</tr>
 		<%
