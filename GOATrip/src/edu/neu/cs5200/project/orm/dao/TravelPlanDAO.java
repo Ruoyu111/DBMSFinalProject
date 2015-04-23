@@ -50,6 +50,8 @@ public class TravelPlanDAO {
 		public void deleteTravelPlan(int id) {
 			em.getTransaction().begin();
 			TravelPlan travelPlan = em.find(TravelPlan.class, id);
+			User user = travelPlan.getUser();
+			user.getTravelPlans().remove(travelPlan);
 			em.remove(travelPlan);
 			em.getTransaction().commit();
 		}

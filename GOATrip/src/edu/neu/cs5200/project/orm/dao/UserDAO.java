@@ -59,8 +59,11 @@ public class UserDAO {
 	// addTravelPlan usecase(1)
 	public void addTravelPlan(Integer userId, TravelPlan travelPlan) {
 		em.getTransaction().begin();
+		
 		User user = em.find(User.class, userId);
 		travelPlan.setUser(user);
+		em.persist(travelPlan);
+		
 		user.getTravelPlans().add(travelPlan);
 		em.merge(user);
 		em.getTransaction().commit();

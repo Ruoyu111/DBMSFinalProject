@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="noteStyle.css" media="screen" />
 </head>
 <body >
-	<% String idStr = request.getParameter("id"); %>
+	<% String idStr = request.getParameter("id");%>
 	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p><br/>
 	<div class = "container">
 		<%
@@ -43,6 +43,7 @@
 		
 		<h1>My travel plans</h1>
 		<form action="travelplan.jsp">
+		<input type="hidden" name="id" value="<%= idStr%>" />
 			<table class="table table-striped">
 			<tr>
 				<th>Title</th>
@@ -51,6 +52,7 @@
 				<th>&nbsp;</th>
 			</tr>
 			<tr>
+					
 				<td><input name="title" class="form-control"/></td>
 				<td><input class="form-control" name="date" readonly/></td>
 				<td><input name="destination" class="form-control"/></td>
@@ -63,11 +65,11 @@
 			for(TravelPlan travelPlan : travelPlans)
 			{
 		%>		<tr>
-					<td><%= travelPlan.getTitle() %></td>
+					<td><%= travelPlan.getTitle() %>, <%= travelPlan.getId() %>, <%= travelPlan.getUser().getUserName() %></td>
 					<td><%= travelPlan.getDate() %></td>
 					<td><%= travelPlan.getDestination() %></td>
 					<td>
-					<a class="btn btn-danger" href="travelplan.jsp?action=delete&id=<%= idStr%>&planId=<%=travelPlan.getId() %>">Delete</a>
+					<a class="btn btn-danger" href="travelplan.jsp?action=delete&id=<%=idStr%>&planId=<%=travelPlan.getId()%>">Delete</a>
 					</td>
 				</tr>
 		<%

@@ -14,7 +14,7 @@ public class User
 	private String passWord;
 	private String email;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<TravelPlan> travelPlans;
 	
 	@OneToMany(mappedBy="user")
