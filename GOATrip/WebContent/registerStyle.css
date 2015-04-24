@@ -43,3 +43,9 @@ p.double2 {
 	font-size: 15px;
 	color: green;
 }
+
+p.success {
+	color: green;
+	position: relative;
+	left: 80px;
+}

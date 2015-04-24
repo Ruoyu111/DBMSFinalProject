@@ -10,8 +10,16 @@
 <link rel="stylesheet" type="text/css" href="viewNoteStyle.css" media="screen" />
 </head>
 <body >
-	<% String idStr = request.getParameter("id");%>
-	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p><br/>
-This is view note page!
+	<% String UserIdStr = request.getParameter("id");%>
+	<p class = "title"><a href = "homepage.jsp?id=<%= UserIdStr%>" class = "goatrip">GoATrip</a><p><br/>
+	<%
+		String noteId = request.getParameter("noteId");
+		int noteidInt = Integer.parseInt(noteId);
+		NoteDAO notedao = new NoteDAO();
+		Note note = notedao.findNoteById(noteidInt);
+	%>
+	
+	<h1><%= note.getTitle() %> <a class="btn btn-warning" href="modifyNote.jsp?id=<%=UserIdStr%>&noteId=<%=note.getId()%>">Modify</a></h1>
+	<p><%= note.getContent() %></p>
 </body>
 </html>
