@@ -84,6 +84,7 @@ public class UserDAO {
 		em.getTransaction().begin();
 		User user = em.find(User.class, userId);
 		note.setUser(user);
+		em.persist(note);
 		user.getNotes().add(note);
 		em.merge(user);
 		em.getTransaction().commit();

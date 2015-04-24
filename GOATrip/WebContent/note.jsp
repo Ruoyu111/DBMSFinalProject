@@ -34,8 +34,8 @@
 		%>
 	
 	
-		<h1>My Notes</h1>
-		<a class="btn btn-primary" href="createNote.jsp?id=<%=UserIdStr%>">Create</a>
+		<h1>My Notes<a class="btn btn-primary" href="createNote.jsp?id=<%=UserIdStr%>">Create</a></h1>
+		
 		<form action="note.jsp">
 		<input type="hidden" name="id" value="<%= UserIdStr%>" />
 			<table class="table table-striped">
