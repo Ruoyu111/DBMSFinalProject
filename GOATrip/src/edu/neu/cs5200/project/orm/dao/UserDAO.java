@@ -122,6 +122,25 @@ public class UserDAO {
 		em.getTransaction().commit();
 	}
 	
+	// user unlike a note
+	public void unlikeNote(Integer userId, Integer noteId)
+	{
+		em.getTransaction().begin();
+
+		User user = em.find(User.class, userId);
+		Note note = em.find(Note.class, noteId);
+
+		note.getLikedUsers().remove(user);
+		em.merge(note);
+		em.flush();
+
+		user.getLikednotes().remove(note);
+		em.merge(user);
+		em.flush();
+
+		em.getTransaction().commit();
+	}
+	
 	// user follow other user usecase(6)
 	public void follow(Integer followerId, Integer leaderId) {
 		em.getTransaction().begin();
@@ -218,7 +237,10 @@ public class UserDAO {
 		// dao.addComment(1, 2, comment);
 
 		// like a note test
-//		dao.likeNote(2, 2);
+//		dao.likeNote(1, 18);
+		
+		// user unlike a note test
+//		dao.unlikeNote(1, 18);
 		
 		// find likednotes by user test
 //		User ruoyu = dao.findUserById(1);

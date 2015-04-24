@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="edu.neu.cs5200.project.orm.dao.*, edu.neu.cs5200.project.orm.models.*, java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +12,24 @@
 <body >
 	<%
 	String idStr = request.getParameter("id");
+	int userId = Integer.parseInt(idStr);
+	UserDAO userdao = new UserDAO();
+	User user = userdao.findUserById(userId);
+	List<User> leaders = user.getLeaders();
+	String action = request.getParameter("action");
+	String noteId = request.getParameter("noteId");
+	
+	if("unlike".equals(action))
+	{
+		int noteIdInt = Integer.parseInt(noteId);
+		userdao.unlikeNote(userId, noteIdInt);
+	}
+	else if("like".equals(action))
+	{
+		int noteIdInt = Integer.parseInt(noteId);
+		userdao.likeNote(userId, noteIdInt);
+	}
+	
 	%>
 	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p>
 	<div class = "container">
@@ -23,7 +41,50 @@
 					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="book"><a href="book.jsp?id=<%= idStr%>" class="button">Book</a></button></td>
 				</tr>
 			</table>
-
+		</form>
+		<h1>Friend's Notes</h1>
+		<form action="homepage.jsp">
+		<table class="table table-striped">
+			<tr>
+				<th>Title</th>
+				<th>CreateDate</th>
+				<th>Author</th>
+				<th>&nbsp;</th>
+				<th>Like/Unlike</th>
+			</tr>
+		<%
+			for(User leader : leaders)
+			{
+				List<Note> notes = leader.getNotes();
+				for(Note note : notes)
+				{
+					%>
+						<tr>
+							<td><%= note.getTitle()  %></td>
+							<td><%= note.getCreateDate() %></td>
+							<td><%= leader.getUserName() %></td>
+							<td><a class="btn btn-info" href="followerView.jsp?id=<%= idStr%>&noteId=<%=note.getId() %>">View</a></td>
+							<%
+								List likedUsers = note.getLikedUsers();
+								if(likedUsers.contains(user) == true)
+								{
+									%>
+									<td><a href="homepage.jsp?action=unlike&id=<%= idStr%>&noteId=<%=note.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a></td>
+									<%
+								}
+								else if(likedUsers.contains(user) == false)
+								{
+									%>
+									<td><a href="homepage.jsp?action=like&id=<%= idStr%>&noteId=<%=note.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a></td>
+									<%
+								}
+							%>
+						</tr>
+					<%
+				}
+			}
+		%>
+		</table>
 		</form>
 	</div>
 </body>
