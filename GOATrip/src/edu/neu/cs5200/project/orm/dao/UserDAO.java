@@ -264,9 +264,8 @@ public class UserDAO {
 		// }
 
 		// addComment by a USER for a NOTE test
-		// Comment comment = new Comment(null, "createst", "just test", new
-		// Date());
-		// dao.addComment(1, 2, comment);
+//		 Comment comment = new Comment(null, "123createst", "just test", new Date());
+//		 dao.addComment(1, 2, comment);
 
 		// like a note test
 //		dao.likeNote(1, 18);

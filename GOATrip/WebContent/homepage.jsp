@@ -45,13 +45,14 @@
 		</form>
 		<h1>Friend's Notes</h1>
 		<form action="homepage.jsp">
-		<table class="table table-striped">
+		<table class="table">
 			<tr>
 				<th>Title</th>
 				<th>CreateDate</th>
 				<th>Author</th>
 				<th>&nbsp;</th>
-				<th>Like/Unlike</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
 			</tr>
 		<%
 			for(User leader : leaders)
@@ -80,6 +81,7 @@
 									<%
 								}
 							%>
+							<td><a href="comment.jsp?id=<%= idStr%>&noteId=<%= note.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span> Comment</a></td>
 						</tr>
 					<%
 				}
