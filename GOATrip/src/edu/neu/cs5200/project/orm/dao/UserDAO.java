@@ -159,6 +159,20 @@ public class UserDAO {
 		em.getTransaction().commit();
 	}
 	
+	// find user by userName or email
+	public int findUserByNameOrEmail(String keyword)
+	{
+		List<User> allUsers = findAllUsers();
+		for (User user : allUsers)
+		{
+			if ((user.getUserName().equals(keyword)) || (user.getEmail().equals(keyword)))
+			{
+				return user.getId();
+			}
+		}
+		return -1;
+	}
+	
 
 	public static void main(String[] args) {
 		UserDAO dao = new UserDAO();
@@ -268,6 +282,10 @@ public class UserDAO {
 //		{
 //			System.out.println(u.getUserName());
 //		}
+		
+		// find user by keyword
+//		int ruoyuId = dao.findUserByNameOrEmail("chen.sheng@husky.neu.edu");
+//		System.out.println(ruoyuId);
 		
 
 	}
