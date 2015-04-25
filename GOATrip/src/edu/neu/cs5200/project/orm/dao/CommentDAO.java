@@ -50,6 +50,8 @@ public class CommentDAO {
 	public void deleteComment(int id) {
 		em.getTransaction().begin();
 		Comment comment = em.find(Comment.class, id);
+		User user = comment.getUser();
+		user.getComments().remove(comment);
 		em.remove(comment);
 		em.getTransaction().commit();
 	}

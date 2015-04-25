@@ -35,13 +35,14 @@
 			<%
 		}
 		%>
-	
+		<h1>Make a comment</h1>
 		<form action="comment.jsp">
 			<input type="hidden" name="id" value="<%= UserIdStr%>" />
 			<input type="hidden" name="noteId" value="<%= noteIdStr%>" />
 			<h1><input class="form-control" name="title" placeholder="Write comment title here"/></h1>
 			<textarea placeholder="Make your comment here..." rows="10" cols="50" name="comment"></textarea><br>
 			<h1><button class="btn btn-success top-left" type="submit" name="action" value="submit">Submit</button></h1>
+			<a href="viewAllComments.jsp?id=<%= UserIdStr%>&action=viewallcomments" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> View All My Comments</a>
 		</form>
 	
 	</div>
