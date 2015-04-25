@@ -16,6 +16,8 @@
 		String action = request.getParameter("action");
 		String keyword = request.getParameter("search");
 		UserDAO userdao = new UserDAO();
+		int UserIdInt = Integer.parseInt(UserIdStr);
+		User user = userdao.findUserById(UserIdInt);
 		
 		if("search".equals(action))
 		{
@@ -41,6 +43,21 @@
 					<tr>
 						<td><%= resultUser.getUserName() %></td>
 						<td><%= resultUser.getEmail() %></td>
+						<%
+							List<User> followers = resultUser.getFollowers();
+							if (followers.contains(user) == true)
+							{
+								%>
+								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=unfollow" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span> Unfollow</a></td>
+								<%
+							}
+							else if (followers.contains(user) == false)
+							{
+								%>
+								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=follow" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Follow</a></td>
+								<%
+							}
+						%>
 					</tr>
 				<%
 			}
