@@ -16,7 +16,7 @@
 		int idInt = Integer.parseInt(idStr);
 		NoteDAO notedao = new NoteDAO();
 		UserDAO userdao = new UserDAO();
-		User follower = userdao.findUserById(idInt);
+		User user = userdao.findUserById(idInt);
 		String action = request.getParameter("action");
 		String noteId = request.getParameter("noteId");
 		int noteIdInt = Integer.parseInt(noteId);
@@ -25,29 +25,41 @@
 		if("unlike".equals(action))
 		{
 			userdao.unlikeNote(idInt, noteIdInt);
+			%>
+			<META HTTP-EQUIV=REFRESH CONTENT="0; URL=followerView.jsp?id=<%= idStr%>&noteId=<%= noteId%>">
+			<%
 		}
 		else if("like".equals(action))
 		{
 			userdao.likeNote(idInt, noteIdInt);
+			%>
+			<META HTTP-EQUIV=REFRESH CONTENT="0; URL=followerView.jsp?id=<%= idStr%>&noteId=<%= noteId%>">
+			<%
 		}
 	%>
 	<div class = "container">
 		<h1><%= note.getTitle() %></h1>
-		<form action="followerView.jsp">
+		<form action="userView.jsp">
 			<%
-				List likedUsers = note.getLikedUsers();
-				if(likedUsers.contains(follower) == true)
-					{
+				List<User> likedUsers = note.getLikedUsers();
+				boolean contains = false;
+				for(User user1 : likedUsers)
+				{
+					if(user1.getUserName() == user.getUserName())
+						contains = true;
+				}
+				if(contains)
+				{
 					%>
 						<a href="followerView.jsp?action=unlike&id=<%= idStr%>&noteId=<%=note.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span>Unlike</a>
 					<%
-					}
-				else if(likedUsers.contains(follower) == false)
-					{
+				}
+				else if(!contains)
+				{
 					%>
 						<a href="followerView.jsp?action=like&id=<%= idStr%>&noteId=<%=note.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>Like</a>
 					<%
-					}
+				}
 					%>
 		<p><%= note.getContent() %></p>
 		</form>
