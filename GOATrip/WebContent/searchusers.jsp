@@ -18,6 +18,20 @@
 		UserDAO userdao = new UserDAO();
 		int UserIdInt = Integer.parseInt(UserIdStr);
 		User user = userdao.findUserById(UserIdInt);
+		String action2 = request.getParameter("action2");
+		
+		if("follow".equals(action2))
+		{
+			String resultIdStr = request.getParameter("resultId");
+			int resultIdInt = Integer.parseInt(resultIdStr);
+			userdao.follow(UserIdInt,resultIdInt);
+		}
+		else if("unfollow".equals(action2))
+		{
+			String resultIdStr = request.getParameter("resultId");
+			int resultIdInt = Integer.parseInt(resultIdStr);
+			userdao.unfollow(UserIdInt,resultIdInt);
+		}
 		
 		if("search".equals(action))
 		{
@@ -48,13 +62,13 @@
 							if (followers.contains(user) == true)
 							{
 								%>
-								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=unfollow" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span> Unfollow</a></td>
+								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=unfollow&resultId=<%= resultId%>" class="btn btn-default"><span class="glyphicon glyphicon-minus"></span> Unfollow</a></td>
 								<%
 							}
 							else if (followers.contains(user) == false)
 							{
 								%>
-								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=follow" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Follow</a></td>
+								<td><a href="searchusers.jsp?id=<%= UserIdStr%>&action=search&search=<%= resultUser.getUserName()%>&action2=follow&resultId=<%= resultId%>" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Follow</a></td>
 								<%
 							}
 						%>

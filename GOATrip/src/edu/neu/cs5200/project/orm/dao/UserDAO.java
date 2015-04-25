@@ -159,6 +159,24 @@ public class UserDAO {
 		em.getTransaction().commit();
 	}
 	
+	// user unfollow other user
+	public void unfollow(Integer followerId, Integer leaderId) {
+		em.getTransaction().begin();
+
+		User follower = em.find(User.class, followerId);
+		User leader = em.find(User.class, leaderId);
+
+		follower.getLeaders().remove(leader);
+		em.merge(follower);
+		em.flush();
+
+		leader.getFollowers().remove(follower);
+		em.merge(leader);
+		em.flush();
+
+		em.getTransaction().commit();
+	}
+	
 	// find user by userName or email
 	public int findUserByNameOrEmail(String keyword)
 	{
@@ -266,6 +284,9 @@ public class UserDAO {
 		
 		// user follow other user test
 //		dao.follow(3,1);
+		
+		// user unfollow other test
+//		dao.unfollow(3, 1);
 		
 		// follower get all its leaders
 //		User ruoyu = dao.findUserById(1);
