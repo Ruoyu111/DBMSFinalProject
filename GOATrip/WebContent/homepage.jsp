@@ -32,6 +32,7 @@
 	
 	%>
 	<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p>
+	<div id = "logout"><a href="signIn.jsp" class="btn btn-default top-left"><span class="glyphicon glyphicon-log-out"></span> Logout</a></div>
 	<div class = "container">
 		<form>
 			<table>

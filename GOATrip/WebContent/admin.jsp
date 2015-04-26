@@ -11,7 +11,8 @@
 </head>
 <body>
 	<% String adminId = request.getParameter("adminId");%>
-	<p class = "title">GoATrip<p><br/>
+	<p class = "title">GoATrip</p><br/>
+	<div id = "logout"><a href="signIn.jsp" class="btn btn-default top-left"><span class="glyphicon glyphicon-log-out"></span> Logout</a></div>
 	<%
 		UserDAO userdao = new UserDAO();
 		String userIdStr = request.getParameter("userId");

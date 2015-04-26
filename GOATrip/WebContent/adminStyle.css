@@ -33,3 +33,9 @@ p.warning {
 	position: relative;
 	left: 80px;
 }
+
+#logout {
+	position:absolute;
+    top:25px;
+    right:20px;
+}
