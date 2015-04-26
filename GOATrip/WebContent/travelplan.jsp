@@ -44,7 +44,7 @@
 		<h1>My travel plans</h1>
 		<form action="travelplan.jsp">
 		<input type="hidden" name="id" value="<%= idStr%>" />
-			<table class="table table-striped">
+			<table class="table">
 			<tr>
 				<th>Title</th>
 				<th>Date</th>

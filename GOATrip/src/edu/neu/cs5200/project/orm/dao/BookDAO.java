@@ -49,6 +49,8 @@ public class BookDAO {
 	public void deleteBook(int id) {
 		em.getTransaction().begin();
 		Book book = em.find(Book.class, id);
+		User user = book.getUser();
+		user.getBooks().remove(book);
 		em.remove(book);
 		em.getTransaction().commit();
 	}

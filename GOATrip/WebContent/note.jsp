@@ -38,7 +38,7 @@
 		
 		<form action="note.jsp">
 		<input type="hidden" name="id" value="<%= UserIdStr%>" />
-			<table class="table table-striped">
+			<table class="table">
 			<tr>
 				<th>Title</th>
 				<th>CreateDate</th>
