@@ -32,26 +32,53 @@
  	String action = request.getParameter("action");
  	String username = request.getParameter("username");
  	String password = request.getParameter("password");
+ 	String selectedValue = request.getParameter("options");
  	
  	if("signin".equals(action))
  	{
- 		signinDAO signindao = new signinDAO();
- 		int check = signindao.signinCheck(username, password);
+ 		if("user".equals(selectedValue))
+ 	 	{
  		
- 		if(check > 0)
- 		{
- 			%>
- 				<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp?id=<%= String.valueOf(check)%>">
- 				<p class="success">Login success!</p>
- 			<%
+ 			signinDAO signindao = new signinDAO();
+ 			int check = signindao.signinCheck(username, password);
+ 		
+ 			if(check > 0)
+ 			{
+ 				%>
+ 					<META HTTP-EQUIV=REFRESH CONTENT="1; URL=homepage.jsp?id=<%= String.valueOf(check)%>">
+ 					<p class="success">Login success!</p>
+ 				<%
  			
- 		}
+ 			}
  		
- 		else
+ 			else
+ 			{
+ 				%>
+ 					<p class="error">ERROR: username/password pair not found! <a href="signIn.jsp" class="button top-button signup-button">Click here</a> to re-enter your username and passowrd.</p>
+ 				<%
+ 			}
+ 	 	}
+ 		
+ 		else if("admin".equals(selectedValue))
  		{
- 			%>
- 				<p class="error">ERROR: username/password pair not found! <a href="signIn.jsp" class="button top-button signup-button">Click here</a> to re-enter your username and passowrd.</p>
- 			<%
+ 			signinDAO signindao = new signinDAO();
+ 			int checkAdmin = signindao.signinCheckAdmin(username, password);
+ 			
+ 			if(checkAdmin > 0)
+ 			{
+ 				%>
+ 					<META HTTP-EQUIV=REFRESH CONTENT="1; URL=admin.jsp?adminId=<%= String.valueOf(checkAdmin)%>">
+ 					<p class="success">Login success!</p>
+ 				<%
+ 			
+ 			}
+ 		
+ 			else
+ 			{
+ 				%>
+ 					<p class="error">ERROR: username/password pair not found! <a href="signIn.jsp" class="button top-button signup-button">Click here</a> to re-enter your username and passowrd.</p>
+ 				<%
+ 			}
  		}
  	
  	}
@@ -64,11 +91,12 @@
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
+        <p>
+        <select name="options" class="form-control">
+  			<option value="user">User</option>
+  			<option value="admin">Admin</option>
+		</select>
+        </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="signin">Sign in</button>
         <p class="text-center sign-up"><a href="register.jsp" class="button top-button signup-button">Sign up</a> for a new account</p>
       </form>

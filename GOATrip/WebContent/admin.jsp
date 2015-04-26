@@ -10,6 +10,48 @@
 <link rel="stylesheet" type="text/css" href="adminStyle.css" media="screen" />
 </head>
 <body>
-	<p>admin page!</p>
+	<% String adminId = request.getParameter("adminId");%>
+	<p class = "title">GoATrip<p><br/>
+	<%
+		UserDAO userdao = new UserDAO();
+		String userIdStr = request.getParameter("userId");
+		String action = request.getParameter("action");
+		
+		if("delete".equals(action))
+		{
+			int userIdInt = Integer.parseInt(userIdStr);
+			userdao.deleteUser(userIdInt);
+			%>
+				<META HTTP-EQUIV=REFRESH CONTENT="0; URL=admin.jsp?adminId=<%= adminId%>">
+			<%
+		}
+	%>
+	
+	
+	<h1>All Users</h1>
+	<form action="admin.jsp">
+	<input type="hidden" name="adminId" value="<%= adminId%>" />
+		<table class="table">
+			<tr>
+				<th>UserName</th>
+				<th>Email</th>
+				<th>&nbsp;</th>
+			</tr>
+			<%
+			UserDAO dao = new UserDAO();
+			List<User> users = dao.findAllUsers();
+			for(User user : users)
+			{
+				%>
+					<tr>
+						<td><%= user.getUserName() %></td>
+						<td><%= user.getEmail() %></td>
+						<td><a class="btn btn-danger" href="admin.jsp?action=delete&adminId=<%= adminId %>&userId=<%= user.getId() %>">Delete</a></td>
+					</tr>
+				<%
+			}
+			%>
+	
+	</form>
 </body>
 </html>
