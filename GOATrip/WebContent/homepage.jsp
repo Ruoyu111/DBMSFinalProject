@@ -41,6 +41,7 @@
 					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="travelplan"><a href="travelplan.jsp?id=<%= idStr%>" class="button">Travel Plan</a></button></td>
 					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="book"><a href="book.jsp?id=<%= idStr%>" class="button">Book</a></button></td>
 					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="searchusers"><a href="searchusers.jsp?id=<%= idStr%>" class="button">Search Users</a></button></td>
+					<td><button class="btn btn-lg btn-success btn-block "  type="submit" name="action" value="searchlocation"><a href="api.jsp?id=<%= idStr%>" class="button">Search Location</a></button></td>
 				</tr>
 			</table>
 		</form>
