@@ -192,6 +192,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <button id="refresh">Refresh</button>
 <button id="toggle_traffic">Traffic</button>
 <button id="toggle_weather">Weather</button>
-<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">GoATrip</a><p>
+<p class = "title"><a href = "homepage.jsp?id=<%= idStr%>" class = "goatrip">Back To Homepage</a><p>
   </body>
 </html>
